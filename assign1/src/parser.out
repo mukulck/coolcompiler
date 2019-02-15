@@ -1,0 +1,745 @@
+Created by PLY version 3.7 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    INHERITS
+    NEWLINE
+    IGNORE
+    COMMENT
+    BLOCK_BEGIN
+    BLOCK_END
+    IN
+    CLASS
+    NOT
+
+Grammar
+
+Rule 0     S' -> expr
+Rule 1     expr -> IDENTIFIER OP_ASGN expr
+Rule 2     expr -> expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+Rule 3     expr -> expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+Rule 4     expr -> conditionals
+Rule 5     expr -> loop
+Rule 6     expr -> block_expr
+Rule 7     expr -> let_expr
+Rule 8     expr -> NEW TYPE
+Rule 9     expr -> ISVOID expr
+Rule 10    expr -> return_statement
+Rule 11    expr -> break_statement
+Rule 12    expr -> continue_statement
+Rule 13    expr -> expr OP_ARITHMETIC_B expr
+Rule 14    expr -> expr
+Rule 15    expr -> expr OP_ARITHMETIC_U expr
+Rule 16    expr -> expr OP_RELATIONAL expr
+Rule 17    expr -> expr expr OP_LOGICAL expr
+Rule 18    expr -> OP_ARITHMETIC_U expr
+Rule 19    expr -> PARAN_OPEN expr PARAN_CLOSE
+Rule 20    expr -> IDENTIFIER
+Rule 21    expr -> IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+Rule 22    expr -> TRUE
+Rule 23    expr -> FALSE
+Rule 24    expr -> NUMBER
+Rule 25    expr -> STRING
+Rule 26    conditionals -> case
+Rule 27    conditionals -> if_then_else
+Rule 28    loop -> loop while
+Rule 29    loop -> for
+Rule 30    loop -> do_while
+Rule 31    argument_list_opt -> argument_list
+Rule 32    argument_list_opt -> empty
+Rule 33    argument_list -> argument_list COMMA expr
+Rule 34    argument_list -> expr
+Rule 35    case -> CASE expr OF actions ESAC
+Rule 36    actions -> action
+Rule 37    actions -> action actions
+Rule 38    action -> IDENTIFIER COLON TYPE OP_IMPLIES expr
+Rule 39    if_then_else -> IF expr THEN expr ELSE expr FI
+Rule 40    while -> WHILE expr LOOP expr POOL
+Rule 41    for -> FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+Rule 42    do_while -> DO LOOP expr POOL WHILE expr
+Rule 43    break_statement -> BREAK
+Rule 44    continue_statement -> CONTINUE
+Rule 45    return_statement -> RETURN
+Rule 46    block_expr -> PARAN_OPEN block_list PARAN_OPEN
+Rule 47    block_list -> block_list expr STMT_TERMINATOR
+Rule 48    block_list -> expr STMT_TERMINATOR
+Rule 49    let_expr -> LET
+Rule 50    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ARRAY_CLOSE          : 21
+ARRAY_OPEN           : 21
+AT                   : 3
+BLOCK_BEGIN          : 
+BLOCK_END            : 
+BREAK                : 43
+CASE                 : 35
+CLASS                : 
+COLON                : 38
+COMMA                : 33
+COMMENT              : 
+CONTINUE             : 44
+DO                   : 42
+DOT                  : 2 3
+ELSE                 : 39
+ESAC                 : 35
+FALSE                : 23
+FI                   : 39
+FOR                  : 41
+IDENTIFIER           : 1 2 3 20 21 38
+IF                   : 39
+IGNORE               : 
+IN                   : 
+INHERITS             : 
+ISVOID               : 9
+LET                  : 49
+LOOP                 : 40 41 42
+NEW                  : 8
+NEWLINE              : 
+NOT                  : 
+NUMBER               : 24
+OF                   : 35
+OP_ARITHMETIC_B      : 13
+OP_ARITHMETIC_U      : 15 18
+OP_ASGN              : 1
+OP_IMPLIES           : 38
+OP_LOGICAL           : 17
+OP_RELATIONAL        : 16
+PARAN_CLOSE          : 2 3 19 41
+PARAN_OPEN           : 2 3 19 41 46 46
+POOL                 : 40 41 42
+RETURN               : 45
+STMT_TERMINATOR      : 41 41 47 48
+STRING               : 25
+THEN                 : 39
+TRUE                 : 22
+TYPE                 : 3 8 38
+WHILE                : 40 42
+error                : 
+
+Nonterminals, with rules where they appear
+
+action               : 36 37
+actions              : 35 37
+argument_list        : 31 33
+argument_list_opt    : 2 3
+block_expr           : 6
+block_list           : 46 47
+break_statement      : 11
+case                 : 26
+conditionals         : 4
+continue_statement   : 12
+do_while             : 30
+empty                : 32
+expr                 : 1 2 3 9 13 13 14 15 15 16 16 17 17 17 18 19 21 33 34 35 38 39 39 39 40 40 41 41 41 41 42 42 47 48 0
+for                  : 29
+if_then_else         : 27
+let_expr             : 7
+loop                 : 5 28
+return_statement     : 10
+while                : 28
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expr
+    (1) expr -> . IDENTIFIER OP_ASGN expr
+    (2) expr -> . expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> . expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (4) expr -> . conditionals
+    (5) expr -> . loop
+    (6) expr -> . block_expr
+    (7) expr -> . let_expr
+    (8) expr -> . NEW TYPE
+    (9) expr -> . ISVOID expr
+    (10) expr -> . return_statement
+    (11) expr -> . break_statement
+    (12) expr -> . continue_statement
+    (13) expr -> . expr OP_ARITHMETIC_B expr
+    (14) expr -> . expr
+    (15) expr -> . expr OP_ARITHMETIC_U expr
+    (16) expr -> . expr OP_RELATIONAL expr
+    (17) expr -> . expr expr OP_LOGICAL expr
+    (18) expr -> . OP_ARITHMETIC_U expr
+    (19) expr -> . PARAN_OPEN expr PARAN_CLOSE
+    (20) expr -> . IDENTIFIER
+    (21) expr -> . IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+    (22) expr -> . TRUE
+    (23) expr -> . FALSE
+    (24) expr -> . NUMBER
+    (25) expr -> . STRING
+    (26) conditionals -> . case
+    (27) conditionals -> . if_then_else
+    (28) loop -> . loop while
+    (29) loop -> . for
+    (30) loop -> . do_while
+    (46) block_expr -> . PARAN_OPEN block_list PARAN_OPEN
+    (49) let_expr -> . LET
+    (45) return_statement -> . RETURN
+    (43) break_statement -> . BREAK
+    (44) continue_statement -> . CONTINUE
+    (35) case -> . CASE expr OF actions ESAC
+    (39) if_then_else -> . IF expr THEN expr ELSE expr FI
+    (41) for -> . FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+    (42) do_while -> . DO LOOP expr POOL WHILE expr
+
+    IDENTIFIER      shift and go to state 20
+    NEW             shift and go to state 15
+    ISVOID          shift and go to state 4
+    OP_ARITHMETIC_U shift and go to state 5
+    PARAN_OPEN      shift and go to state 27
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 29
+    STRING          shift and go to state 8
+    LET             shift and go to state 26
+    RETURN          shift and go to state 2
+    BREAK           shift and go to state 17
+    CONTINUE        shift and go to state 24
+    CASE            shift and go to state 1
+    IF              shift and go to state 19
+    FOR             shift and go to state 13
+    DO              shift and go to state 16
+
+    do_while                       shift and go to state 9
+    case                           shift and go to state 22
+    return_statement               shift and go to state 3
+    expr                           shift and go to state 10
+    conditionals                   shift and go to state 23
+    for                            shift and go to state 25
+    continue_statement             shift and go to state 11
+    break_statement                shift and go to state 21
+    let_expr                       shift and go to state 12
+    if_then_else                   shift and go to state 28
+    loop                           shift and go to state 6
+    block_expr                     shift and go to state 7
+
+state 1
+
+    (35) case -> CASE . expr OF actions ESAC
+    (1) expr -> . IDENTIFIER OP_ASGN expr
+    (2) expr -> . expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> . expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (4) expr -> . conditionals
+    (5) expr -> . loop
+    (6) expr -> . block_expr
+    (7) expr -> . let_expr
+    (8) expr -> . NEW TYPE
+    (9) expr -> . ISVOID expr
+    (10) expr -> . return_statement
+    (11) expr -> . break_statement
+    (12) expr -> . continue_statement
+    (13) expr -> . expr OP_ARITHMETIC_B expr
+    (14) expr -> . expr
+    (15) expr -> . expr OP_ARITHMETIC_U expr
+    (16) expr -> . expr OP_RELATIONAL expr
+    (17) expr -> . expr expr OP_LOGICAL expr
+    (18) expr -> . OP_ARITHMETIC_U expr
+    (19) expr -> . PARAN_OPEN expr PARAN_CLOSE
+    (20) expr -> . IDENTIFIER
+    (21) expr -> . IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+    (22) expr -> . TRUE
+    (23) expr -> . FALSE
+    (24) expr -> . NUMBER
+    (25) expr -> . STRING
+    (26) conditionals -> . case
+    (27) conditionals -> . if_then_else
+    (28) loop -> . loop while
+    (29) loop -> . for
+    (30) loop -> . do_while
+    (46) block_expr -> . PARAN_OPEN block_list PARAN_OPEN
+    (49) let_expr -> . LET
+    (45) return_statement -> . RETURN
+    (43) break_statement -> . BREAK
+    (44) continue_statement -> . CONTINUE
+    (35) case -> . CASE expr OF actions ESAC
+    (39) if_then_else -> . IF expr THEN expr ELSE expr FI
+    (41) for -> . FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+    (42) do_while -> . DO LOOP expr POOL WHILE expr
+
+    IDENTIFIER      shift and go to state 20
+    NEW             shift and go to state 15
+    ISVOID          shift and go to state 4
+    OP_ARITHMETIC_U shift and go to state 5
+    PARAN_OPEN      shift and go to state 27
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 29
+    STRING          shift and go to state 8
+    LET             shift and go to state 26
+    RETURN          shift and go to state 2
+    BREAK           shift and go to state 17
+    CONTINUE        shift and go to state 24
+    CASE            shift and go to state 1
+    IF              shift and go to state 19
+    FOR             shift and go to state 13
+    DO              shift and go to state 16
+
+    do_while                       shift and go to state 9
+    case                           shift and go to state 22
+    return_statement               shift and go to state 3
+    expr                           shift and go to state 30
+    conditionals                   shift and go to state 23
+    for                            shift and go to state 25
+    continue_statement             shift and go to state 11
+    break_statement                shift and go to state 21
+    let_expr                       shift and go to state 12
+    if_then_else                   shift and go to state 28
+    loop                           shift and go to state 6
+    block_expr                     shift and go to state 7
+
+state 2
+
+    (45) return_statement -> RETURN .
+
+    OP_LOGICAL      reduce using rule 45 (return_statement -> RETURN .)
+    DOT             reduce using rule 45 (return_statement -> RETURN .)
+    AT              reduce using rule 45 (return_statement -> RETURN .)
+    OP_ARITHMETIC_B reduce using rule 45 (return_statement -> RETURN .)
+    OP_ARITHMETIC_U reduce using rule 45 (return_statement -> RETURN .)
+    OP_RELATIONAL   reduce using rule 45 (return_statement -> RETURN .)
+    IDENTIFIER      reduce using rule 45 (return_statement -> RETURN .)
+    NEW             reduce using rule 45 (return_statement -> RETURN .)
+    ISVOID          reduce using rule 45 (return_statement -> RETURN .)
+    PARAN_OPEN      reduce using rule 45 (return_statement -> RETURN .)
+    TRUE            reduce using rule 45 (return_statement -> RETURN .)
+    FALSE           reduce using rule 45 (return_statement -> RETURN .)
+    NUMBER          reduce using rule 45 (return_statement -> RETURN .)
+    STRING          reduce using rule 45 (return_statement -> RETURN .)
+    LET             reduce using rule 45 (return_statement -> RETURN .)
+    RETURN          reduce using rule 45 (return_statement -> RETURN .)
+    BREAK           reduce using rule 45 (return_statement -> RETURN .)
+    CONTINUE        reduce using rule 45 (return_statement -> RETURN .)
+    CASE            reduce using rule 45 (return_statement -> RETURN .)
+    IF              reduce using rule 45 (return_statement -> RETURN .)
+    FOR             reduce using rule 45 (return_statement -> RETURN .)
+    DO              reduce using rule 45 (return_statement -> RETURN .)
+    $end            reduce using rule 45 (return_statement -> RETURN .)
+    STMT_TERMINATOR reduce using rule 45 (return_statement -> RETURN .)
+    COMMA           reduce using rule 45 (return_statement -> RETURN .)
+    PARAN_CLOSE     reduce using rule 45 (return_statement -> RETURN .)
+    OF              reduce using rule 45 (return_statement -> RETURN .)
+    THEN            reduce using rule 45 (return_statement -> RETURN .)
+    LOOP            reduce using rule 45 (return_statement -> RETURN .)
+    POOL            reduce using rule 45 (return_statement -> RETURN .)
+    ARRAY_CLOSE     reduce using rule 45 (return_statement -> RETURN .)
+    ELSE            reduce using rule 45 (return_statement -> RETURN .)
+    WHILE           reduce using rule 45 (return_statement -> RETURN .)
+    FI              reduce using rule 45 (return_statement -> RETURN .)
+    ESAC            reduce using rule 45 (return_statement -> RETURN .)
+
+
+state 3
+
+    (10) expr -> return_statement .
+
+    DOT             reduce using rule 10 (expr -> return_statement .)
+    AT              reduce using rule 10 (expr -> return_statement .)
+    OP_ARITHMETIC_B reduce using rule 10 (expr -> return_statement .)
+    OP_ARITHMETIC_U reduce using rule 10 (expr -> return_statement .)
+    OP_RELATIONAL   reduce using rule 10 (expr -> return_statement .)
+    IDENTIFIER      reduce using rule 10 (expr -> return_statement .)
+    NEW             reduce using rule 10 (expr -> return_statement .)
+    ISVOID          reduce using rule 10 (expr -> return_statement .)
+    PARAN_OPEN      reduce using rule 10 (expr -> return_statement .)
+    TRUE            reduce using rule 10 (expr -> return_statement .)
+    FALSE           reduce using rule 10 (expr -> return_statement .)
+    NUMBER          reduce using rule 10 (expr -> return_statement .)
+    STRING          reduce using rule 10 (expr -> return_statement .)
+    LET             reduce using rule 10 (expr -> return_statement .)
+    RETURN          reduce using rule 10 (expr -> return_statement .)
+    BREAK           reduce using rule 10 (expr -> return_statement .)
+    CONTINUE        reduce using rule 10 (expr -> return_statement .)
+    CASE            reduce using rule 10 (expr -> return_statement .)
+    IF              reduce using rule 10 (expr -> return_statement .)
+    FOR             reduce using rule 10 (expr -> return_statement .)
+    DO              reduce using rule 10 (expr -> return_statement .)
+    COMMA           reduce using rule 10 (expr -> return_statement .)
+    PARAN_CLOSE     reduce using rule 10 (expr -> return_statement .)
+    OP_LOGICAL      reduce using rule 10 (expr -> return_statement .)
+    $end            reduce using rule 10 (expr -> return_statement .)
+    OF              reduce using rule 10 (expr -> return_statement .)
+    THEN            reduce using rule 10 (expr -> return_statement .)
+    STMT_TERMINATOR reduce using rule 10 (expr -> return_statement .)
+    LOOP            reduce using rule 10 (expr -> return_statement .)
+    POOL            reduce using rule 10 (expr -> return_statement .)
+    ARRAY_CLOSE     reduce using rule 10 (expr -> return_statement .)
+    ELSE            reduce using rule 10 (expr -> return_statement .)
+    WHILE           reduce using rule 10 (expr -> return_statement .)
+    FI              reduce using rule 10 (expr -> return_statement .)
+    ESAC            reduce using rule 10 (expr -> return_statement .)
+
+
+state 4
+
+    (9) expr -> ISVOID . expr
+    (1) expr -> . IDENTIFIER OP_ASGN expr
+    (2) expr -> . expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> . expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (4) expr -> . conditionals
+    (5) expr -> . loop
+    (6) expr -> . block_expr
+    (7) expr -> . let_expr
+    (8) expr -> . NEW TYPE
+    (9) expr -> . ISVOID expr
+    (10) expr -> . return_statement
+    (11) expr -> . break_statement
+    (12) expr -> . continue_statement
+    (13) expr -> . expr OP_ARITHMETIC_B expr
+    (14) expr -> . expr
+    (15) expr -> . expr OP_ARITHMETIC_U expr
+    (16) expr -> . expr OP_RELATIONAL expr
+    (17) expr -> . expr expr OP_LOGICAL expr
+    (18) expr -> . OP_ARITHMETIC_U expr
+    (19) expr -> . PARAN_OPEN expr PARAN_CLOSE
+    (20) expr -> . IDENTIFIER
+    (21) expr -> . IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+    (22) expr -> . TRUE
+    (23) expr -> . FALSE
+    (24) expr -> . NUMBER
+    (25) expr -> . STRING
+    (26) conditionals -> . case
+    (27) conditionals -> . if_then_else
+    (28) loop -> . loop while
+    (29) loop -> . for
+    (30) loop -> . do_while
+    (46) block_expr -> . PARAN_OPEN block_list PARAN_OPEN
+    (49) let_expr -> . LET
+    (45) return_statement -> . RETURN
+    (43) break_statement -> . BREAK
+    (44) continue_statement -> . CONTINUE
+    (35) case -> . CASE expr OF actions ESAC
+    (39) if_then_else -> . IF expr THEN expr ELSE expr FI
+    (41) for -> . FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+    (42) do_while -> . DO LOOP expr POOL WHILE expr
+
+    IDENTIFIER      shift and go to state 20
+    NEW             shift and go to state 15
+    ISVOID          shift and go to state 4
+    OP_ARITHMETIC_U shift and go to state 5
+    PARAN_OPEN      shift and go to state 27
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 29
+    STRING          shift and go to state 8
+    LET             shift and go to state 26
+    RETURN          shift and go to state 2
+    BREAK           shift and go to state 17
+    CONTINUE        shift and go to state 24
+    CASE            shift and go to state 1
+    IF              shift and go to state 19
+    FOR             shift and go to state 13
+    DO              shift and go to state 16
+
+    do_while                       shift and go to state 9
+    case                           shift and go to state 22
+    return_statement               shift and go to state 3
+    expr                           shift and go to state 31
+    conditionals                   shift and go to state 23
+    for                            shift and go to state 25
+    continue_statement             shift and go to state 11
+    break_statement                shift and go to state 21
+    let_expr                       shift and go to state 12
+    if_then_else                   shift and go to state 28
+    loop                           shift and go to state 6
+    block_expr                     shift and go to state 7
+
+state 5
+
+    (18) expr -> OP_ARITHMETIC_U . expr
+    (1) expr -> . IDENTIFIER OP_ASGN expr
+    (2) expr -> . expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> . expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (4) expr -> . conditionals
+    (5) expr -> . loop
+    (6) expr -> . block_expr
+    (7) expr -> . let_expr
+    (8) expr -> . NEW TYPE
+    (9) expr -> . ISVOID expr
+    (10) expr -> . return_statement
+    (11) expr -> . break_statement
+    (12) expr -> . continue_statement
+    (13) expr -> . expr OP_ARITHMETIC_B expr
+    (14) expr -> . expr
+    (15) expr -> . expr OP_ARITHMETIC_U expr
+    (16) expr -> . expr OP_RELATIONAL expr
+    (17) expr -> . expr expr OP_LOGICAL expr
+    (18) expr -> . OP_ARITHMETIC_U expr
+    (19) expr -> . PARAN_OPEN expr PARAN_CLOSE
+    (20) expr -> . IDENTIFIER
+    (21) expr -> . IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+    (22) expr -> . TRUE
+    (23) expr -> . FALSE
+    (24) expr -> . NUMBER
+    (25) expr -> . STRING
+    (26) conditionals -> . case
+    (27) conditionals -> . if_then_else
+    (28) loop -> . loop while
+    (29) loop -> . for
+    (30) loop -> . do_while
+    (46) block_expr -> . PARAN_OPEN block_list PARAN_OPEN
+    (49) let_expr -> . LET
+    (45) return_statement -> . RETURN
+    (43) break_statement -> . BREAK
+    (44) continue_statement -> . CONTINUE
+    (35) case -> . CASE expr OF actions ESAC
+    (39) if_then_else -> . IF expr THEN expr ELSE expr FI
+    (41) for -> . FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+    (42) do_while -> . DO LOOP expr POOL WHILE expr
+
+    IDENTIFIER      shift and go to state 20
+    NEW             shift and go to state 15
+    ISVOID          shift and go to state 4
+    OP_ARITHMETIC_U shift and go to state 5
+    PARAN_OPEN      shift and go to state 27
+    TRUE            shift and go to state 14
+    FALSE           shift and go to state 18
+    NUMBER          shift and go to state 29
+    STRING          shift and go to state 8
+    LET             shift and go to state 26
+    RETURN          shift and go to state 2
+    BREAK           shift and go to state 17
+    CONTINUE        shift and go to state 24
+    CASE            shift and go to state 1
+    IF              shift and go to state 19
+    FOR             shift and go to state 13
+    DO              shift and go to state 16
+
+    do_while                       shift and go to state 9
+    case                           shift and go to state 22
+    return_statement               shift and go to state 3
+    expr                           shift and go to state 32
+    conditionals                   shift and go to state 23
+    for                            shift and go to state 25
+    continue_statement             shift and go to state 11
+    break_statement                shift and go to state 21
+    let_expr                       shift and go to state 12
+    if_then_else                   shift and go to state 28
+    loop                           shift and go to state 6
+    block_expr                     shift and go to state 7
+
+state 6
+
+    (5) expr -> loop .
+    (28) loop -> loop . while
+    (40) while -> . WHILE expr LOOP expr POOL
+
+  ! shift/reduce conflict for WHILE resolved as shift
+    DOT             reduce using rule 5 (expr -> loop .)
+    AT              reduce using rule 5 (expr -> loop .)
+    OP_ARITHMETIC_B reduce using rule 5 (expr -> loop .)
+    OP_ARITHMETIC_U reduce using rule 5 (expr -> loop .)
+    OP_RELATIONAL   reduce using rule 5 (expr -> loop .)
+    IDENTIFIER      reduce using rule 5 (expr -> loop .)
+    NEW             reduce using rule 5 (expr -> loop .)
+    ISVOID          reduce using rule 5 (expr -> loop .)
+    PARAN_OPEN      reduce using rule 5 (expr -> loop .)
+    TRUE            reduce using rule 5 (expr -> loop .)
+    FALSE           reduce using rule 5 (expr -> loop .)
+    NUMBER          reduce using rule 5 (expr -> loop .)
+    STRING          reduce using rule 5 (expr -> loop .)
+    LET             reduce using rule 5 (expr -> loop .)
+    RETURN          reduce using rule 5 (expr -> loop .)
+    BREAK           reduce using rule 5 (expr -> loop .)
+    CONTINUE        reduce using rule 5 (expr -> loop .)
+    CASE            reduce using rule 5 (expr -> loop .)
+    IF              reduce using rule 5 (expr -> loop .)
+    FOR             reduce using rule 5 (expr -> loop .)
+    DO              reduce using rule 5 (expr -> loop .)
+    COMMA           reduce using rule 5 (expr -> loop .)
+    PARAN_CLOSE     reduce using rule 5 (expr -> loop .)
+    OP_LOGICAL      reduce using rule 5 (expr -> loop .)
+    $end            reduce using rule 5 (expr -> loop .)
+    OF              reduce using rule 5 (expr -> loop .)
+    THEN            reduce using rule 5 (expr -> loop .)
+    STMT_TERMINATOR reduce using rule 5 (expr -> loop .)
+    LOOP            reduce using rule 5 (expr -> loop .)
+    POOL            reduce using rule 5 (expr -> loop .)
+    ARRAY_CLOSE     reduce using rule 5 (expr -> loop .)
+    ELSE            reduce using rule 5 (expr -> loop .)
+    FI              reduce using rule 5 (expr -> loop .)
+    ESAC            reduce using rule 5 (expr -> loop .)
+    WHILE           shift and go to state 34
+
+  ! WHILE           [ reduce using rule 5 (expr -> loop .) ]
+
+    while                          shift and go to state 33
+
+state 7
+
+    (6) expr -> block_expr .
+
+    DOT             reduce using rule 6 (expr -> block_expr .)
+    AT              reduce using rule 6 (expr -> block_expr .)
+    OP_ARITHMETIC_B reduce using rule 6 (expr -> block_expr .)
+    OP_ARITHMETIC_U reduce using rule 6 (expr -> block_expr .)
+    OP_RELATIONAL   reduce using rule 6 (expr -> block_expr .)
+    IDENTIFIER      reduce using rule 6 (expr -> block_expr .)
+    NEW             reduce using rule 6 (expr -> block_expr .)
+    ISVOID          reduce using rule 6 (expr -> block_expr .)
+    PARAN_OPEN      reduce using rule 6 (expr -> block_expr .)
+    TRUE            reduce using rule 6 (expr -> block_expr .)
+    FALSE           reduce using rule 6 (expr -> block_expr .)
+    NUMBER          reduce using rule 6 (expr -> block_expr .)
+    STRING          reduce using rule 6 (expr -> block_expr .)
+    LET             reduce using rule 6 (expr -> block_expr .)
+    RETURN          reduce using rule 6 (expr -> block_expr .)
+    BREAK           reduce using rule 6 (expr -> block_expr .)
+    CONTINUE        reduce using rule 6 (expr -> block_expr .)
+    CASE            reduce using rule 6 (expr -> block_expr .)
+    IF              reduce using rule 6 (expr -> block_expr .)
+    FOR             reduce using rule 6 (expr -> block_expr .)
+    DO              reduce using rule 6 (expr -> block_expr .)
+    COMMA           reduce using rule 6 (expr -> block_expr .)
+    PARAN_CLOSE     reduce using rule 6 (expr -> block_expr .)
+    OP_LOGICAL      reduce using rule 6 (expr -> block_expr .)
+    $end            reduce using rule 6 (expr -> block_expr .)
+    OF              reduce using rule 6 (expr -> block_expr .)
+    THEN            reduce using rule 6 (expr -> block_expr .)
+    STMT_TERMINATOR reduce using rule 6 (expr -> block_expr .)
+    LOOP            reduce using rule 6 (expr -> block_expr .)
+    POOL            reduce using rule 6 (expr -> block_expr .)
+    ARRAY_CLOSE     reduce using rule 6 (expr -> block_expr .)
+    ELSE            reduce using rule 6 (expr -> block_expr .)
+    WHILE           reduce using rule 6 (expr -> block_expr .)
+    FI              reduce using rule 6 (expr -> block_expr .)
+    ESAC            reduce using rule 6 (expr -> block_expr .)
+
+
+state 8
+
+    (25) expr -> STRING .
+
+    DOT             reduce using rule 25 (expr -> STRING .)
+    AT              reduce using rule 25 (expr -> STRING .)
+    OP_ARITHMETIC_B reduce using rule 25 (expr -> STRING .)
+    OP_ARITHMETIC_U reduce using rule 25 (expr -> STRING .)
+    OP_RELATIONAL   reduce using rule 25 (expr -> STRING .)
+    IDENTIFIER      reduce using rule 25 (expr -> STRING .)
+    NEW             reduce using rule 25 (expr -> STRING .)
+    ISVOID          reduce using rule 25 (expr -> STRING .)
+    PARAN_OPEN      reduce using rule 25 (expr -> STRING .)
+    TRUE            reduce using rule 25 (expr -> STRING .)
+    FALSE           reduce using rule 25 (expr -> STRING .)
+    NUMBER          reduce using rule 25 (expr -> STRING .)
+    STRING          reduce using rule 25 (expr -> STRING .)
+    LET             reduce using rule 25 (expr -> STRING .)
+    RETURN          reduce using rule 25 (expr -> STRING .)
+    BREAK           reduce using rule 25 (expr -> STRING .)
+    CONTINUE        reduce using rule 25 (expr -> STRING .)
+    CASE            reduce using rule 25 (expr -> STRING .)
+    IF              reduce using rule 25 (expr -> STRING .)
+    FOR             reduce using rule 25 (expr -> STRING .)
+    DO              reduce using rule 25 (expr -> STRING .)
+    COMMA           reduce using rule 25 (expr -> STRING .)
+    PARAN_CLOSE     reduce using rule 25 (expr -> STRING .)
+    OP_LOGICAL      reduce using rule 25 (expr -> STRING .)
+    $end            reduce using rule 25 (expr -> STRING .)
+    OF              reduce using rule 25 (expr -> STRING .)
+    THEN            reduce using rule 25 (expr -> STRING .)
+    STMT_TERMINATOR reduce using rule 25 (expr -> STRING .)
+    LOOP            reduce using rule 25 (expr -> STRING .)
+    POOL            reduce using rule 25 (expr -> STRING .)
+    ARRAY_CLOSE     reduce using rule 25 (expr -> STRING .)
+    ELSE            reduce using rule 25 (expr -> STRING .)
+    WHILE           reduce using rule 25 (expr -> STRING .)
+    FI              reduce using rule 25 (expr -> STRING .)
+    ESAC            reduce using rule 25 (expr -> STRING .)
+
+
+state 9
+
+    (30) loop -> do_while .
+
+    WHILE           reduce using rule 30 (loop -> do_while .)
+    OP_LOGICAL      reduce using rule 30 (loop -> do_while .)
+    DOT             reduce using rule 30 (loop -> do_while .)
+    AT              reduce using rule 30 (loop -> do_while .)
+    OP_ARITHMETIC_B reduce using rule 30 (loop -> do_while .)
+    OP_ARITHMETIC_U reduce using rule 30 (loop -> do_while .)
+    OP_RELATIONAL   reduce using rule 30 (loop -> do_while .)
+    IDENTIFIER      reduce using rule 30 (loop -> do_while .)
+    NEW             reduce using rule 30 (loop -> do_while .)
+    ISVOID          reduce using rule 30 (loop -> do_while .)
+    PARAN_OPEN      reduce using rule 30 (loop -> do_while .)
+    TRUE            reduce using rule 30 (loop -> do_while .)
+    FALSE           reduce using rule 30 (loop -> do_while .)
+    NUMBER          reduce using rule 30 (loop -> do_while .)
+    STRING          reduce using rule 30 (loop -> do_while .)
+    LET             reduce using rule 30 (loop -> do_while .)
+    RETURN          reduce using rule 30 (loop -> do_while .)
+    BREAK           reduce using rule 30 (loop -> do_while .)
+    CONTINUE        reduce using rule 30 (loop -> do_while .)
+    CASE            reduce using rule 30 (loop -> do_while .)
+    IF              reduce using rule 30 (loop -> do_while .)
+    FOR             reduce using rule 30 (loop -> do_while .)
+    DO              reduce using rule 30 (loop -> do_while .)
+    POOL            reduce using rule 30 (loop -> do_while .)
+    $end            reduce using rule 30 (loop -> do_while .)
+    OF              reduce using rule 30 (loop -> do_while .)
+    THEN            reduce using rule 30 (loop -> do_while .)
+    PARAN_CLOSE     reduce using rule 30 (loop -> do_while .)
+    STMT_TERMINATOR reduce using rule 30 (loop -> do_while .)
+    LOOP            reduce using rule 30 (loop -> do_while .)
+    ARRAY_CLOSE     reduce using rule 30 (loop -> do_while .)
+    ELSE            reduce using rule 30 (loop -> do_while .)
+    COMMA           reduce using rule 30 (loop -> do_while .)
+    FI              reduce using rule 30 (loop -> do_while .)
+    ESAC            reduce using rule 30 (loop -> do_while .)
+
+
+state 10
+
+    (0) S' -> expr .
+    (2) expr -> expr . DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> expr . AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (13) expr -> expr . OP_ARITHMETIC_B expr
+    (14) expr -> expr .
+    (15) expr -> expr . OP_ARITHMETIC_U expr
+    (16) expr -> expr . OP_RELATIONAL expr
+    (17) expr -> expr . expr OP_LOGICAL expr
+    (1) expr -> . IDENTIFIER OP_ASGN expr
+    (2) expr -> . expr DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (3) expr -> . expr AT TYPE DOT IDENTIFIER PARAN_OPEN argument_list_opt PARAN_CLOSE
+    (4) expr -> . conditionals
+    (5) expr -> . loop
+    (6) expr -> . block_expr
+    (7) expr -> . let_expr
+    (8) expr -> . NEW TYPE
+    (9) expr -> . ISVOID expr
+    (10) expr -> . return_statement
+    (11) expr -> . break_statement
+    (12) expr -> . continue_statement
+    (13) expr -> . expr OP_ARITHMETIC_B expr
+    (14) expr -> . expr
+    (15) expr -> . expr OP_ARITHMETIC_U expr
+    (16) expr -> . expr OP_RELATIONAL expr
+    (17) expr -> . expr expr OP_LOGICAL expr
+    (18) expr -> . OP_ARITHMETIC_U expr
+    (19) expr -> . PARAN_OPEN expr PARAN_CLOSE
+    (20) expr -> . IDENTIFIER
+    (21) expr -> . IDENTIFIER ARRAY_OPEN expr ARRAY_CLOSE
+    (22) expr -> . TRUE
+    (23) expr -> . FALSE
+    (24) expr -> . NUMBER
+    (25) expr -> . STRING
+    (26) conditionals -> . case
+    (27) conditionals -> . if_then_else
+    (28) loop -> . loop while
+    (29) loop -> . for
+    (30) loop -> . do_while
+    (46) block_expr -> . PARAN_OPEN block_list PARAN_OPEN
+    (49) let_expr -> . LET
+    (45) return_statement -> . RETURN
+    (43) break_statement -> . BREAK
+    (44) continue_statement -> . CONTINUE
+    (35) case -> . CASE expr OF actions ESAC
+    (39) if_then_else -> . IF expr THEN expr ELSE expr FI
+    (41) for -> . FOR PARAN_OPEN expr STMT_TERMINATOR expr STMT_TERMINATOR expr PARAN_CLOSE LOOP expr POOL
+    (42) do_while -> . DO LOOP expr POOL WHILE expr
+
+  ! shift/reduce conflict for DOT resolved as shift
+  ! shift/reduce conflict for AT resolved as shift
+  ! shift/reduce conflict for OP_ARITHMETIC_B resolved as shift
